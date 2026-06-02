@@ -67,10 +67,13 @@ export const useGameStore = create<GameStore>((set) => ({
   },
   getGameById: async (id) => {
     try {
+      set({ isLoading: true });
       const response = await axiosInstance.get(`/games/${id}`);
       set({ game: response.data });
     } catch (error) {
       console.error(error);
+    } finally {
+      set({ isLoading: false });
     }
   },
 

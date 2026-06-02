@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useGameStore, type Game } from "../store/useGameStore";
+import { type Game } from "../store/useGameStore";
 import { BiEdit } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
 import DeleteGameModal from "./DeleteGameModal";
@@ -43,13 +43,6 @@ export default function GameListCard({
   const [hovered, setHovered] = useState<string | null>(null);
   const [deleteGameId, setDeleteGameId] = useState("");
   const [editGameId, setEditGameId] = useState("");
-
-  const handleEditGame = (id: string) => {
-    useGameStore.setState({
-      game: games.find((game) => game.id === editGameId),
-    });
-    setEditGameId(id);
-  };
 
   return (
     <div className="flex items-start justify-center p-10 font-mono">
@@ -95,7 +88,7 @@ export default function GameListCard({
                     {showButtons && (
                       <span className="ml-2 inline-flex items-center space-x-2">
                         <button
-                          onClick={() => handleEditGame(row.id)}
+                          onClick={() => setEditGameId(row.id)}
                           className="cursor-pointer"
                         >
                           <BiEdit className="size-5 text-sky-300" />

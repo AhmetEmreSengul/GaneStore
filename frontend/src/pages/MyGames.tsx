@@ -23,8 +23,6 @@ const MyGames = () => {
     );
   }
 
-  console.log(myGames);
-
   return (
     <div>
       <div className="flex items-center justify-center ">
